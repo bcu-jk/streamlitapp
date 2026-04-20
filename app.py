@@ -37,7 +37,7 @@ if uploaded_file is not None:
         total = 0
 
         for v in values:
-        total += v
+            total += v
         
         average = total / len(values)
         
