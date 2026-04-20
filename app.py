@@ -1,12 +1,19 @@
 import streamlit as st
+import csv
+from io import StringIO
 
 st.title('Data Dashboard')
 st.write('Week 9: Interactive Dashboard')
 
-import csv
-values = []
-with open('student.csv', 'r', newline='') as f:
-    reader = csv.reader(f)
+
+uploaded_file = st.file_uploader('Choose a file:')
+
+if uploaded_file is not None:
+    csv_data = StringIO(uploaded_file.getvalue().decode('utf-8'))
+
+    reader = csv.reader(csv_data)
+    values = []
+
     header = next(reader)
     for row in reader:
         values.append(float(row[2]))
